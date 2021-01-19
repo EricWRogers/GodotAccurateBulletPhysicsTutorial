@@ -1,0 +1,229 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Target.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=3]
+[ext_resource path="res://Art/RoomMaterials/p_orange.tres" type="Material" id=4]
+[ext_resource path="res://Art/RoomMaterials/p_light_brown.tres" type="Material" id=5]
+[ext_resource path="res://Art/RoomMaterials/p_light_green.tres" type="Material" id=6]
+[ext_resource path="res://Art/RoomMaterials/p_red.tres" type="Material" id=7]
+[ext_resource path="res://Prefabs/HUD.tscn" type="PackedScene" id=8]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Game" type="Node" groups=[
+"game",
+]]
+script = ExtResource( 3 )
+max_game_time = 10
+
+[node name="Room" type="Position3D" parent="."]
+
+[node name="Floor" type="StaticBody" parent="Room"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Floor/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 7 )
+
+[node name="Celling" type="StaticBody" parent="Room"]
+transform = Transform( 5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 4.78473, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Celling"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Celling/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Wall" type="StaticBody" parent="Room"]
+transform = Transform( -4.07302e-07, -0.1, 0, 2.5, -1.62921e-08, 0, 0, 0, 5, -5.11542, 2.40123, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Wall"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Wall/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="Wall2" type="StaticBody" parent="Room"]
+transform = Transform( -4.07302e-07, -0.1, 0, 2.5, -1.62921e-08, 0, 0, 0, 5, 5.02128, 2.40123, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Wall2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Wall2/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 5 )
+
+[node name="Wall3" type="StaticBody" parent="Room"]
+transform = Transform( 6.63579e-14, 1.62921e-08, 5, 2.5, -1.62921e-08, 0, 4.07302e-07, 0.1, -8.14603e-07, 0, 2.401, -4.8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Wall3"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Wall3/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Wall4" type="StaticBody" parent="Room"]
+transform = Transform( 6.63579e-14, 1.62921e-08, 5, 2.5, -1.62921e-08, 0, 4.07302e-07, 0.1, -8.14603e-07, 0, 2.401, 4.8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Wall4"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Wall4/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 6 )
+
+[node name="Counter" type="StaticBody" parent="Room"]
+transform = Transform( 4.64504e-14, 1.22191e-07, 5, 1.75, -1.22191e-07, 2.06453e-19, 2.85111e-07, 0.75, -8.14603e-07, 0, -0.102642, -1.39236 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Counter"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Counter/CollisionShape"]
+transform = Transform( 1, 0, -6.77626e-21, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="Shelf" type="StaticBody" parent="Room"]
+transform = Transform( 2.65431e-15, 1.62921e-07, 5, 0.1, -1.62921e-07, 0, 1.62921e-08, 1, -8.14603e-07, 0, 1.56981, -4.88326 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Shelf"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Shelf/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 6 )
+
+[node name="Target" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.78496, -0.897993 )
+max_health = 5
+
+[node name="Target2" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784959, -0.716007 )
+max_health = 5
+
+[node name="Target3" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784959, -0.541611 )
+max_health = 5
+
+[node name="Target4" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784961, -0.372576 )
+max_health = 5
+
+[node name="Target5" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.78496, -0.218675 )
+max_health = 5
+
+[node name="Target6" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.78496, -0.0632467 )
+max_health = 5
+
+[node name="Target7" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784961, 0.0780156 )
+max_health = 5
+
+[node name="Target8" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784961, 0.260001 )
+max_health = 5
+
+[node name="Target9" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.78496, 0.434397 )
+max_health = 5
+
+[node name="Target10" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.78496, 0.603432 )
+max_health = 5
+
+[node name="Target11" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784962, 0.757333 )
+max_health = 5
+
+[node name="Target12" parent="Room/Shelf" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37113e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 4.44089e-16, 2.67963, 0.784962, 0.912761 )
+max_health = 5
+
+[node name="Shelf2" type="StaticBody" parent="Room"]
+transform = Transform( 2.65431e-15, 1.62921e-07, 5, 0.1, -1.62921e-07, 0, 1.62921e-08, 1, -8.14603e-07, 0, 2.62957, -5.43185 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/Shelf2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/Shelf2/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = ExtResource( 6 )
+
+[node name="Target" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667753, -0.897993 )
+max_health = 5
+
+[node name="Target2" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667753, -0.716007 )
+max_health = 5
+
+[node name="Target3" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667753, -0.541611 )
+max_health = 5
+
+[node name="Target4" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667753, -0.372576 )
+max_health = 5
+
+[node name="Target5" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, -0.218675 )
+max_health = 5
+
+[node name="Target6" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, -0.0632467 )
+max_health = 5
+
+[node name="Target7" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.0780156 )
+max_health = 5
+
+[node name="Target8" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.260001 )
+max_health = 5
+
+[node name="Target9" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.434397 )
+max_health = 5
+
+[node name="Target10" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.603432 )
+max_health = 5
+
+[node name="Target11" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.757333 )
+max_health = 5
+
+[node name="Target12" parent="Room/Shelf2" instance=ExtResource( 2 )]
+transform = Transform( -2.62268e-09, 3, 4.37114e-09, 0, -1.31134e-07, 0.1, 0.06, 1.31134e-07, 1.91069e-16, 2.67878, 0.667754, 0.912762 )
+max_health = 5
+
+[node name="SpotLight" type="SpotLight" parent="Room"]
+transform = Transform( 1, 0, 0, 0, 0.876769, 0.480912, 0, -0.480912, 0.876769, 0, 4.29041, 3.09354 )
+shadow_enabled = true
+spot_range = 13.5165
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1.25, 0, 0, 0, 1, 0, 1.92664, 3.17204 )
+
+[node name="BulletContainer" type="Node" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="GameTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HUD" parent="." instance=ExtResource( 8 )]

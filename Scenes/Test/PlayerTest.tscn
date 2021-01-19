@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PlayerTest.gd" type="Script" id=2]
+[ext_resource path="res://Prefabs/Target.tscn" type="PackedScene" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="PlayerTest" type="Spatial" groups=[
+"game",
+]]
+script = ExtResource( 2 )
+
+[node name="Floor" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+transform = Transform( 20, 0, 0, 0, 0.1, 0, 0, 0, 20, 0, 0, 0 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance" type="MeshInstance" parent="Floor/CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Box" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37707, 0 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.287544, 0.957767, 0, -0.957767, 0.287544, 0, 20.4863, 0 )
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="BulletContainer" type="Spatial" parent="."]
