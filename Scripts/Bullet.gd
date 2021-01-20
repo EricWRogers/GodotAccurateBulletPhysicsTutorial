@@ -2,8 +2,8 @@ extends Area
 
 var bullet_speed : int = 20
 
-func _process(delta):
-	translate(Vector3(0,0,-1) * bullet_speed * delta)
+func _physics_process(delta):
+	translate(Vector3(0,-0.01,-1) * bullet_speed * delta)
 
 func _on_Timer_timeout():
 	queue_free()
