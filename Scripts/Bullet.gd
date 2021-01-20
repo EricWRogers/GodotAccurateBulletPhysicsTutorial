@@ -1,4 +1,4 @@
-extends Area
+extends Spatial
 
 var bullet_speed : int = 20
 
