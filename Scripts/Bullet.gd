@@ -8,7 +8,7 @@ func _ready():
 	bullet_last_pos = global_transform.origin
 
 func _physics_process(delta):
-	translate(Vector3(0,-0.01,-1) * bullet_speed * delta)
+	translate(Vector3(0,-0.01,-1 * bullet_speed) * delta)
 	_check_hit(bullet_last_pos)
 	bullet_last_pos = global_transform.origin
 
